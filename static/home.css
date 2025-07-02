@@ -1,0 +1,117 @@
+/* Reset some default styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Heading */
+#heading h1 {
+    margin-top: 20px;
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+
+
+/* Form styling */
+#form {
+    margin: 30px 0;
+}
+
+input[type="text"] {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    width: 250px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    background-color: #ffffffcc;
+    color: #0077ff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #ffffff;
+}
+
+/* Error message */
+.alert {
+    background-color: #ff4444cc;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Grid container */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 0 30px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Grid items */
+.grid-item {
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background 0.3s ease;
+    text-align: left;
+}
+
+.grid-item:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Make wide cards align center (bottom row) */
+.grid-item.wide {
+    grid-column: span 1;
+}
+
+.grid-container > .wide:nth-child(5) {
+    grid-column-start: 2;
+}
+
+/* Responsive behavior */
+@media screen and (max-width: 900px) {
+    .grid-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .grid-container > .wide:nth-child(5) {
+        grid-column-start: auto;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+}
+

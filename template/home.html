@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="/static/home.css">
+    <link rel="s" href="">
+    
+</head>
+<body>
+<div id="form">
+    <form method="POST">
+    {% csrf_token %}
+    <input type="text" name="city" placeholder="enter your city">
+    <button type="submit">submit</button> 
+</form> 
+</div>
+{% if error %}
+  <div class="alert alert-danger" role="alert">
+    {{ error }}
+  </div>
+{% endif %}
+
+<div id="heading">
+<h1>Weather Report</h1>
+</div>
+
+
+<div class="grid-container">
+
+  <div class="grid-item" id="general">
+    <p>City: {{ city }}</p>
+    <p>Date: {{ date }}</p>
+    <p>Coordinates: ({{ lat }}, {{ lon }})</p>
+   </div>
+
+   <div class="grid-item" id="description">
+    <p>Main Weather: {{ main_weather }}</p>
+    <p>Description: {{ description }}</p>
+    {% if icon %}
+    <img src="https://openweathermap.org/img/wn/{{ icon }}@2x.png" alt="Weather Icon">
+    {% endif %}
+    </div>
+  <div class="grid-item" id="temperature">
+    <p>Temperature: {{ temp }}°C</p>
+    <p>Feels Like: {{ feels_like }}°C</p>
+    <p>Min Temp: {{ temp_min }}°C</p>
+    <p>Max Temp: {{ temp_max }}°C</p>
+  </div>
+
+  <div class="grid-item" id="pressure">
+    <p>Pressure: {{ pressure }} hPa</p>
+    <p>Sea Level: {{ sea_level }} hPa</p>
+    <p>Ground Level: {{ grnd_level }} hPa</p>
+  </div>
+
+  <div class="grid-item wide" id="wind">
+    <p>Wind Speed: {{ Wind_speed }} m/s</p>
+    <p>Wind Direction: {{ Wind_deg }}°</p>
+    <p>Wind Gust: {{ Wind_gust }} m/s</p>
+  </div>
+
+  <div class="grid-item wide" id="rain">
+    <p>Humidity: {{ humidity }}%</p>
+    <p>Visibility: {{ visibility }} meters</p>
+    <p>Rain (last hour): {{ rain }} mm</p>
+    <p>Cloudiness: {{ clouds }}%</p>
+  </div>
+</div>
+
+
+<script>
+  const iconCode = "{{ icon|default:'' }}";  
+  const fallback = "default.jpg";
+  if (iconCode) {
+    document.body.style.backgroundImage = `url('/media/${iconCode}.jpg')`;
+  } else {
+    document.body.style.backgroundImage = `url('/media/${fallback}')`;
+  }
+</script>
+</body>
+</html>
