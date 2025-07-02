@@ -19,9 +19,7 @@ A beautiful, dynamic Django weather application that fetches real-time data usin
 ## 📸 Screenshot
 
 
-```
-media/demo.jpg
-```
+![](media/demo.jpg)
 
 ---
 
